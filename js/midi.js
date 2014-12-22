@@ -138,8 +138,10 @@ function onMIDIInit( midi ) {
         midiIn.onmidimessage = midiMessageReceived;
       }
     }
-    if (!midiIn)
+    if (!midiIn){
       midiIn = midiAccess.inputs.values().next().value;
+      midiIn.onmidimessage = midiMessageReceived;
+   }
 
     var outputs=midiAccess.outputs.values();
     for ( var output = outputs.next(); output && !output.done; output = outputs.next()) {
